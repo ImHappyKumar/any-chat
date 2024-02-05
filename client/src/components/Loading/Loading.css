@@ -1,0 +1,25 @@
+.scaling-loading {
+    height: 100vh;
+}
+
+.scaling-loading img {
+    width: 50px;
+    animation: scale 1s ease-in-out infinite alternate;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.spinner-loading {
+    height: 100%;
+}
+
+.spinner-loading img {
+    width: 50px;
+}

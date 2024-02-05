@@ -1,0 +1,84 @@
+#signin h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    color: rgba(23, 26, 31, 1);
+}
+
+#signin form label {
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+#signin form input {
+    height: 36px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background: rgba(243, 244, 246, 1);
+    border-radius: 12px;
+    border-width: 0px;
+    outline: none;
+}
+
+#signin form input:hover {
+    color: rgba(188, 193, 202, 1);
+    background: rgba(243, 244, 246, 1);
+}
+
+#signin form input:focus {
+    color: rgb(188, 193, 202);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 0.25rem rgba(155, 214, 29, .25);
+}
+
+#signin form .is-invalid {
+    border-width: 1px;
+}
+
+#signin form .is-invalid:focus {
+    box-shadow: none;
+}
+
+#signin form .invalid-feedback {
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 12px;
+}
+
+#signin .btn-primary {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(23, 26, 31, 1);
+    font-family: 'Wix Madefor Text', sans-serif;
+    border: none;
+    border-radius: 12px;
+    height: 44px;
+}
+
+#signin .btn-primary:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(38, 42, 51, 1);
+}
+
+#signin .btn-primary:hover:active {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(50, 56, 66, 1);
+}
+
+#signin .signup {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: rgba(23, 26, 31, 1);
+}
+
+#signin .signup a {
+    color: rgba(155, 214, 29, 1);
+    text-decoration: none;
+}

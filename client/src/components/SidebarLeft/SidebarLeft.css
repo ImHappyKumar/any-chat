@@ -1,0 +1,70 @@
+#sidebar-left .code {
+    font-size: 24px;
+    color: rgba(181, 230, 74, 1);
+    margin-left: 50%;
+}
+
+#sidebar-left .chat-demo {
+    position: relative;
+    margin-top: 50px;
+}
+
+#sidebar-left .chat-demo .bulb {
+    position: absolute;
+    top: -35px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: rgba(216, 210, 254, 1);
+    border-radius: 12px;
+    margin-left: 60%;
+}
+
+#sidebar-left .chat-demo .bulb i {
+    color: rgba(135, 117, 253, 1);
+    font-size: 24px;
+}
+
+#sidebar-left .chat-demo .avatar img {
+    width: 28px;
+    height: 28px;
+}
+
+#sidebar-left .chat-demo .chat-box {
+    background: rgba(235, 248, 206, 1);
+    border-radius: 0px 18px 18px 18px;
+    font-size: 14px;
+    font-family: 'Wix Madefor Text', sans-serif;
+}
+
+#sidebar-left .thumbs-up {
+    width: 50px;
+    height: 50px;
+    color: rgba(135, 117, 253, 1);
+    background: rgba(242, 240, 255, 1);
+    border-radius: 12px;
+}
+
+#sidebar-left .thumbs-up i {
+    font-size: 24px;
+}
+
+#sidebar-left .avatar img {
+    width: 88px;
+    height: 88px;
+}
+
+#sidebar-left .oval {
+    position: absolute;
+    bottom: 0px;
+    left: 170px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 1);
+    border: 3px solid rgba(135, 117, 253, 1);
+    border-radius: 50%;
+}
+
+#sidebar-left .arrow img {
+    width: 125px;
+}

@@ -1,0 +1,45 @@
+.signout-container {
+    width: 90%;
+    height: 144px;
+    border: 1px solid rgba(216, 210, 254, 1);
+    background: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+}
+
+.signout-container .user-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(155, 214, 29, 1);
+}
+
+.signout-container .user-icon i {
+    font-size: 20px;
+}
+
+.signout-container .user-name {
+    font-family: 'Outfit', sans-serif;
+}
+
+.signout-container .user-name .name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.signout-container .user-name .username {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(23,26,31,0.4);
+}
+
+.signout-container .btn-primary {
+    color: rgba(135, 117, 253, 1);
+    background: rgba(242, 240, 255, 1);
+    border: none;
+    border-radius: 9px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.signout-container .btn-primary:hover {
+    background: rgba(229, 225, 255, 1);
+}
