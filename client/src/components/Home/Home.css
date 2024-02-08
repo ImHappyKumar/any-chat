@@ -1,0 +1,86 @@
+#home .signout i {
+    font-size: 24px;
+    color: rgba(135, 117, 253, 1);
+    cursor: pointer;
+}
+
+#home .logo img {
+    width: 105px;
+    height: 90px;
+}
+
+#home h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    color: rgba(23, 26, 31, 1);
+}
+
+#home h6 {
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: rgba(144, 149, 160, 1);
+}
+
+#home .btn-primary,
+#home .btn-secondary {
+    border: none;
+    border-radius: 12px;
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    height: 52px;
+}
+
+#home .btn-primary {
+    background: rgba(23, 26, 31, 1);
+}
+
+#home .btn-primary:hover,
+#home .btn-primary:active {
+    background: rgba(38, 42, 51, 1) !important;
+}
+
+#home .btn-secondary {
+    color: rgba(23, 26, 31, 1);
+    background: rgba(0, 0, 0, 0);
+}
+
+#home .btn-secondary:hover,
+#home .btn-secondary:active {
+    color: rgba(23, 26, 31, 1) !important;
+    background: rgba(234, 236, 239, 1) !important;
+}
+
+#home form input {
+    height: 36px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: 'Wix Madefor Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background: rgba(243, 244, 246, 1);
+    border-radius: 12px;
+    border-width: 0px;
+    outline: none;
+}
+
+#home form input:hover {
+    color: rgba(188, 193, 202, 1);
+    background: rgba(243, 244, 246, 1);
+}
+
+#home form input:focus {
+    color: rgb(188, 193, 202);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 0.25rem rgba(155, 214, 29, .25);
+}
+
+#home form .btn-primary {
+    height: 44px;
+}

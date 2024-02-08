@@ -1,0 +1,49 @@
+.message-container-right {
+  justify-self: right;
+}
+
+.message-container-right .message-box {
+  background: rgba(155, 214, 29, 0.1);
+  border-radius: 24px 24px 0px 24px;
+}
+
+.message-container-left {
+  justify-self: left;
+}
+
+.message-container-left .message-box {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 0px 24px 24px 24px;
+  border: 2px solid rgba(243, 244, 246, 1);
+}
+
+.message-box {
+  max-width: 450px;
+  word-wrap: break-word;
+}
+
+.message-text {
+  font-family: 'Wix Madefor Text', sans-serif;
+  color: rgba(23, 26, 31, 1);
+}
+
+.sent-text,
+.date-time {
+  font-size: 10px;
+  font-family: 'Wix Madefor Text', sans-serif;
+}
+
+.date-time {
+  display: none;
+}
+
+.message-container-left:hover .date-time,
+.message-container-right:hover .date-time {
+  display: inline;
+}
+
+@media only screen and (max-width: 768px) {
+  .message-box {
+    max-width: 300px;
+  }
+}

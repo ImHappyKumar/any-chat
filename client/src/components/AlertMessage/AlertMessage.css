@@ -1,0 +1,8 @@
+.alert-message {
+    font-size: 12px;
+    font-family: 'Wix Madefor Text', sans-serif;
+    color: rgba(135, 117, 253, 1);
+    background: rgba(242, 240, 255, 1);
+    border: none;
+    border-radius: 9px;
+}

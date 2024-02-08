@@ -1,0 +1,22 @@
+.main-container {
+  height: 97vh;
+}
+
+.main-container .chat-container {
+  overflow: auto;
+}
+
+.main-container .mobile-menu {
+  position: absolute;
+  width: 80vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  z-index: 100;
+}
+
+.main-container .mobile-menu.open {
+  transform: translateX(0);
+}
