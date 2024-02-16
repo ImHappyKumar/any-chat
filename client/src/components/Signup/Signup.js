@@ -57,16 +57,6 @@ const Signup = () => {
     const username = data.username.toLowerCase();
 
     try {
-      const usernameExists = await isUsernameTaken(username);
-      if (usernameExists) {
-        setError("username", {
-          type: "manual",
-          message: "Username is already taken",
-        });
-        setWait(false);
-        return;
-      }
-
       if (username === "admin") {
         setError("username", {
           type: "manual",
@@ -84,18 +74,29 @@ const Signup = () => {
       );
       const user = userCredential.user;
 
-      await sendEmailVerification(user);
-
-      await updateProfile(user, {
-        displayName: name,
-      });
-
       const userCredentialSignin = await signInWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
       const userSignin = userCredentialSignin.user;
+
+      const usernameExists = await isUsernameTaken(username);
+      if (usernameExists) {
+        await deleteUserOnError();
+        setError("username", {
+          type: "manual",
+          message: "Username is already taken",
+        });
+        setWait(false);
+        return;
+      }
+
+      await sendEmailVerification(user);
+
+      await updateProfile(user, {
+        displayName: name,
+      });
 
       if (userSignin) {
         const db = getDatabase();
@@ -177,14 +178,14 @@ const Signup = () => {
       const currentUser = auth.currentUser;
 
       if (currentUser) {
-        await deleteUser(currentUser);
-      }
-
-      const db = getDatabase();
-
-      if (currentUser) {
+        const db = getDatabase();
         const userRef = ref(db, `users/${currentUser.uid}`);
-        await set(userRef, null);
+        const userSnapshot = await get(userRef);
+        if (userSnapshot.exists()) {
+          await set(userRef, null);
+        }
+
+        await deleteUser(currentUser);
       }
 
       console.log("User deleted successfully on error.");
