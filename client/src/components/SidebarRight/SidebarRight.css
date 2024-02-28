@@ -1,0 +1,73 @@
+#sidebar-right .x-mark {
+    font-size: 24px;
+    color: rgba(155, 214, 29, 1);
+    margin-left: 72px;
+}
+
+#sidebar-right .chat-demo {
+    position: relative;
+    margin-top: 28px;
+}
+
+#sidebar-right .chat-demo .question {
+    position: absolute;
+    top: -40px;
+    left: 15px;
+    width: 60px;
+    height: 60px;
+    background: rgba(224, 245, 179, 1);
+    border-radius: 12px;
+}
+
+#sidebar-right .chat-demo .question i {
+    font-size: 24px;
+    color: rgba(155, 214, 29, 1);
+}
+
+#sidebar-right .chat-demo .oval-quadrant {
+    position: absolute;
+    top: -45px;
+    left: -80px;
+    width: 150px;
+    height: 164px;
+    background: linear-gradient(90deg, white 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(155, 214, 29, 1) 50%);
+    border-radius: 50%;
+    transform: rotate(90deg);
+    z-index: -1;
+}
+
+#sidebar-right .chat-demo .chat-box {
+    background: rgba(235, 248, 206, 1);
+    border-radius: 24px 24px 0px 24px;
+    box-shadow: 0px 8px 17px rgba(235, 248, 206, 0.15), 0px 0px 2px rgba(235, 248, 206, 0.12);
+}
+
+#sidebar-right .chat-demo .chat-box .rectangle {
+    height: 11px;
+    background: rgba(181, 230, 74, 1);
+    border-radius: 6px;
+}
+
+#sidebar-right .chat-demo .chat-box .rectangle-large {
+    width: 190px;
+}
+
+#sidebar-right .chat-demo .chat-box .rectangle-small {
+    width: 118px;
+}
+
+#sidebar-right .chat-demo .chat-box .avatar img {
+    width: 36px;
+    height: 36px;
+}
+
+#sidebar-right .chat-demo .chat-box-media {
+    background: rgba(235, 248, 206, 1);
+    border-radius: 12px;
+    width: 257px;
+}
+
+#sidebar-right .chat-demo .chat-box-media img {
+    width: 209px;
+    height: 120px;
+}

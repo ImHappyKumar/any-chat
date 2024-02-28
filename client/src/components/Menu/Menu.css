@@ -1,0 +1,41 @@
+.menu {
+    background: rgba(242, 240, 255, 1);
+    border-radius: 24px;
+    height: 97vh;
+}
+
+.menu .title-logo {
+    width: 36px;
+    height: 31px;
+}
+
+.menu .title-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 800;
+}
+
+.menu .new-chat .btn-primary {
+    width: 85%;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 1);
+    background: rgba(23, 26, 31, 1);
+    border: none;
+}
+
+.menu .new-chat .btn-primary:hover {
+    background: rgba(38, 42, 51, 1);
+}
+
+.menu .online-users {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(23, 26, 31, 0.4);
+}
+
+.menu .users-list {
+    overflow: auto;
+}

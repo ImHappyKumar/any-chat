@@ -1,0 +1,24 @@
+.form {
+  border: 1px solid rgba(155,214,29,1);
+  border-radius: 12px;
+}
+
+.form:hover {
+  border-color: rgba(140,192,26,1);
+}
+
+.form input {
+  border: none;
+  border-radius: 12px;
+  font-family: Outfit;
+  width: 95%;
+  height: 52px;
+  outline: none;
+}
+
+.form .send-button {
+  background: none;
+  border: none;
+  color: #757575;
+  font-size: 24px;
+}
