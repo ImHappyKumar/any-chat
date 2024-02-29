@@ -14,7 +14,10 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [signed, setSigned] = useState(false);
   const [user, setUser] = useState({});
+  const [customRoom, setCustomRoom] = useState(false);
   const navigate = useNavigate();
+  const popularRooms = ["Happy Chating", "Talk Time", "Chit Chat"];
+  const [selectedRoom, setSelectedRoom] = useState(popularRooms[0]);
 
   const {
     handleSubmit,
@@ -65,7 +68,16 @@ const Home = () => {
     }
   };
 
-  const handleContinue = (data) => {
+  const handleSelectedRoomChange = (event) => {
+    setSelectedRoom(event.target.value);
+  };
+
+  const handleSelectedRoomContinue = () => {
+    const room = selectedRoom.toUpperCase();
+    navigate(`/chat/${room}`, { state: { user, room } });
+  };
+
+  const handleCustomRoomContinue = (data) => {
     const room = data.room.toUpperCase();
     navigate(`/chat/${room}`, { state: { user, room } });
   };
@@ -91,61 +103,155 @@ const Home = () => {
             {signed ? (
               <div>
                 <h6 className="text-center">
-                  Welcome {user.name}!<br />
+                  Welcome <strong>{user.name}</strong>!<br />
                   To start chatting, please join a room
                 </h6>
-                <form
-                  className="mx-auto w-50 mt-5 mb-4"
-                  onSubmit={handleSubmit(handleContinue)}
-                >
-                  <Controller
-                    name="room"
-                    control={control}
-                    defaultValue=""
-                    rules={{
-                      required: "Room ID is required",
-                      validate: (value) => {
-                        let newValueArray = value.split(/[ ]+/);
-                        let newValue = newValueArray.join(" ").trim();
-                        const minCharacters = 3;
-                        const maxCharacters = 15;
-
-                        if (newValue.length < minCharacters) {
-                          return `Room ID must contain at least ${minCharacters} characters`;
-                        }
-
-                        if (newValue.length > maxCharacters) {
-                          return `Room ID must not exceed ${maxCharacters} characters`;
-                        }
-
-                        return true;
-                      },
-                    }}
-                    render={({ field }) => (
-                      <>
+                {!customRoom ? (
+                  <div className="mx-auto mt-5" style={{ width: "62%" }}>
+                    <div>
+                      <div
+                        className="btn-group d-flex"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
                         <input
-                          type="text"
-                          className={`form-control ${
-                            errors.room ? "is-invalid" : ""
-                          }`}
-                          id="room"
-                          placeholder="Room ID"
-                          autoComplete="on"
-                          {...field}
+                          type="radio"
+                          className="btn-check"
+                          name="btnradio"
+                          value={popularRooms[0]}
+                          onChange={handleSelectedRoomChange}
+                          checked={selectedRoom === popularRooms[0]}
+                          id="btnradio1"
+                          autoComplete="off"
                         />
-                        {errors.room && (
-                          <div className="invalid-feedback">
-                            {errors.room.message}
-                          </div>
-                        )}
-                      </>
-                    )}
-                  />
+                        <label
+                          className="btn btn-outline-primary d-flex justify-content-center align-items-center"
+                          htmlFor="btnradio1"
+                        >
+                          {popularRooms[0]}
+                        </label>
 
-                  <button type="submit" className="btn btn-primary mt-3 w-100">
-                    Continue
-                  </button>
-                </form>
+                        <input
+                          type="radio"
+                          className="btn-check"
+                          name="btnradio"
+                          value={popularRooms[1]}
+                          onChange={handleSelectedRoomChange}
+                          checked={selectedRoom === popularRooms[1]}
+                          id="btnradio2"
+                          autoComplete="off"
+                        />
+                        <label
+                          className="btn btn-outline-primary d-flex justify-content-center align-items-center"
+                          htmlFor="btnradio2"
+                        >
+                          {popularRooms[1]}
+                        </label>
+
+                        <input
+                          type="radio"
+                          className="btn-check"
+                          name="btnradio"
+                          value={popularRooms[2]}
+                          onChange={handleSelectedRoomChange}
+                          checked={selectedRoom === popularRooms[2]}
+                          id="btnradio3"
+                          autoComplete="off"
+                        />
+                        <label
+                          className="btn btn-outline-primary d-flex justify-content-center align-items-center"
+                          htmlFor="btnradio3"
+                        >
+                          {popularRooms[2]}
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        onClick={handleSelectedRoomContinue}
+                        className="btn btn-primary mt-3 w-100"
+                        style={{ height: "44px" }}
+                      >
+                        Continue
+                      </button>
+                    </div>
+                    <div className="text-center mt-2 mb-3">
+                      <button
+                        className="btn-link text-decoration-underline"
+                        onClick={() => setCustomRoom(true)}
+                      >
+                        Custom Room
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <form
+                      className="mx-auto mt-5"
+                      style={{ width: "62%" }}
+                      onSubmit={handleSubmit(handleCustomRoomContinue)}
+                    >
+                      <Controller
+                        name="room"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                          required: "Room ID is required",
+                          validate: (value) => {
+                            let newValueArray = value.split(/[ ]+/);
+                            let newValue = newValueArray.join(" ").trim();
+                            const minCharacters = 3;
+                            const maxCharacters = 15;
+
+                            if (newValue.length < minCharacters) {
+                              return `Room ID must contain at least ${minCharacters} characters`;
+                            }
+
+                            if (newValue.length > maxCharacters) {
+                              return `Room ID must not exceed ${maxCharacters} characters`;
+                            }
+
+                            return true;
+                          },
+                        }}
+                        render={({ field }) => (
+                          <>
+                            <input
+                              type="text"
+                              className={`form-control ${
+                                errors.room ? "is-invalid" : ""
+                              }`}
+                              id="room"
+                              placeholder="Room ID"
+                              autoComplete="on"
+                              {...field}
+                            />
+                            {errors.room && (
+                              <div className="invalid-feedback">
+                                {errors.room.message}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      />
+
+                      <button
+                        type="submit"
+                        className="btn btn-primary mt-3 w-100"
+                      >
+                        Continue
+                      </button>
+                    </form>
+                    <div className="text-center mt-2 mb-3">
+                      <button
+                        className="btn-link text-decoration-underline"
+                        onClick={() => setCustomRoom(false)}
+                      >
+                        Popular Rooms
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <div>
