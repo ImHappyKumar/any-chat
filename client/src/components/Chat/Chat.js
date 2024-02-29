@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
@@ -29,6 +29,8 @@ const Chat = () => {
   const [users, setUsers] = useState({});
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const outsideMenuRef = useRef(null);
+  const insideMenuRef = useRef(null);
 
   const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:8000";
 
@@ -136,16 +138,26 @@ const Chat = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (openMenu && outsideMenuRef.current.contains(event.target) && !insideMenuRef.current.contains(event.target)) {
+        setOpenMenu(!openMenu);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
+
   const toggleMenu = () => {
-    if (openMenu) {
-      setOpenMenu(false);
-    } else {
-      setOpenMenu(true);
-    }
+    setOpenMenu(!openMenu);
   };
 
   return (
-    <div>
+    <div ref={outsideMenuRef}>
       {connectionLoading ? (
         <ScalingLoading />
       ) : (
@@ -154,16 +166,18 @@ const Chat = () => {
             <Menu
               name={name}
               username={username}
+              room={room}
               users={users}
               leaveRoom={leaveRoom}
             />
           </div>
 
           <div className="col-xl-9 col-lg-8 col-12 d-flex flex-column main-container">
-            <div className={`mobile-menu ${openMenu ? "open" : ""} py-2`}>
+            <div className={`mobile-menu ${openMenu ? "open" : ""} py-2`} ref={insideMenuRef}>
               <Menu
                 name={name}
                 username={username}
+                room={room}
                 users={users}
                 leaveRoom={leaveRoom}
               />

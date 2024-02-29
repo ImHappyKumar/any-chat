@@ -1,5 +1,4 @@
 import React from "react";
-import { GoDotFill } from "react-icons/go";
 
 import "./UserContainer.css";
 
@@ -11,10 +10,7 @@ const UserContainer = ({ users }) => {
           <p>
             {Object.values(users).map((user) => (
               <span key={user.id} className="active-users text-capitalize">
-                {user.name + " "}
-                <i className="text-success">
-                  <GoDotFill />
-                </i>
+                {user.name}
                 <br />
               </span>
             ))}

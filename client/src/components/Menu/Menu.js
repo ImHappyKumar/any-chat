@@ -7,7 +7,7 @@ import logo from "../../images/logo.png";
 import UserContainer from "../UserContainer/UserContainer";
 import SignoutContainer from "../SignoutContainer/SignoutContainer";
 
-const Menu = ({name, username, users, leaveRoom}) => {
+const Menu = ({name, username, room, users, leaveRoom}) => {
   return (
     <div className="menu d-flex flex-column">
       <div className="d-flex ms-4 my-4">
@@ -24,7 +24,7 @@ const Menu = ({name, username, users, leaveRoom}) => {
         </button>
       </div>
 
-      <h4 className="online-users mt-4 ms-4">Online Users</h4>
+      <h4 className="online-users mt-4 ms-4">{room}'s Members</h4>
       <div className="users-list flex-grow-1 mb-3">
         <UserContainer users={users} />
       </div>
