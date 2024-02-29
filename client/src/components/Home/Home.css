@@ -56,6 +56,25 @@
     background: rgba(234, 236, 239, 1) !important;
 }
 
+#home .btn-group .btn {
+    height: 52px;
+    width: 33.3%;
+    border-color: rgb(135, 117, 253);
+    color: rgb(135, 117, 253);
+    font-family: 'Outfit', sans-serif;
+}
+
+#home .btn-group .btn-check:checked+.btn {
+    background-color: rgb(135, 117, 253);
+    color: rgba(255, 255, 255, 1);
+}
+
+#home .btn-link {
+    color: rgba(0, 0, 0);
+    border: none;
+    background: none;
+}
+
 #home form input {
     height: 36px;
     padding-left: 12px;
