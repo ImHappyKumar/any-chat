@@ -8,7 +8,7 @@ const InfoBar = ({ room, leaveRoom, openMenu, toggleMenu }) => {
   return (
     <div className="info-bar d-flex justify-content-between align-items-center mx-3">
       <div className="left-inner-container">
-        <h4 className="text-uppercase">Room Id: {room}</h4>
+        <h4 className="text-uppercase">{room}</h4>
       </div>
       <div className="right-inner-container d-lg-block d-none mb-3">
         <i className="text-danger" onClick={leaveRoom}>
