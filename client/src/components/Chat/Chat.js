@@ -99,7 +99,7 @@ const Chat = () => {
       setUsers(users);
       setConnectionLoading(false);
     });
-  }, [messages]);
+  }, [messages, username]);
 
   //function for sending messages
   const sendMessage = async (event) => {
