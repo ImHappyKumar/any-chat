@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
       const roomUsers = await getUsersOfRoom(user.room);
       io.to(user.room).emit("roomData", { room: user.room, users: roomUsers });
 
-      callback(messageObj);
+      callback();
     }
   });
 
