@@ -70,6 +70,23 @@
     background: rgba(50, 56, 66, 1);
 }
 
+#signup .line-container {
+    display: flex;
+    align-items: center;
+}
+
+#signup .line {
+    margin-top: 3px;
+    border: 1px solid rgba(188, 193, 202, 1);
+    width: 100%;
+}
+
+#signup .text {
+    margin: 0 10px;
+    color: rgba(50, 56, 66, 1);
+    font-size: 14px;
+}
+
 #signup p {
     font-family: 'Outfit', sans-serif;
     color: rgba(23, 26, 31, 1);

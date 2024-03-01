@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import { useForm, Controller } from "react-hook-form";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { getDatabase, ref, get, set } from "firebase/database";
 import { auth } from "../../firebase";
 
 import "./Signin.css";
@@ -12,6 +19,7 @@ import Layout from "../Layout/Layout";
 const Signin = () => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
+  const [isSignInWithGoogle, setIsSignInWithGoogle] = useState(false);
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -23,7 +31,21 @@ const Signin = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
-        navigate("/");
+        if (isSignInWithGoogle) {
+          const db = getDatabase();
+          const userRef = ref(db, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          if (!snapshot.exists()) {
+            await set(userRef, {
+              name: user.displayName,
+              username: null,
+              email: user.email,
+            });
+          }
+          navigate("/");
+        } else {
+          navigate("/");
+        }
       } else {
         setLoading(false);
       }
@@ -65,6 +87,17 @@ const Signin = () => {
       }
     }
     setWait(false);
+  };
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      setIsSignInWithGoogle(true);
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      setIsSignInWithGoogle(false);
+      console.error(error);
+    }
   };
 
   return (
@@ -152,9 +185,28 @@ const Signin = () => {
               </button>
             </form>
 
-            <p className="signup text-center mb-4">
-              Don't have an account? <Link to="/signup">Sign up</Link>
-            </p>
+            <div className="w-75 mx-auto">
+              <div className="line-container my-3">
+                <div className="line"></div>
+                <div className="text">Or</div>
+                <div className="line"></div>
+              </div>
+              <button
+                className="btn btn-primary d-flex justify-content-center align-items-center w-100"
+                onClick={signInWithGoogle}
+              >
+                <i
+                  className="me-2 d-flex align-items-center"
+                  style={{ fontSize: "20px" }}
+                >
+                  <FcGoogle />
+                </i>
+                Sign in with Google
+              </button>
+              <p className="signup text-center my-4">
+                Don't have an account? <Link to="/signup">Sign up</Link>
+              </p>
+            </div>
           </div>
         </Layout>
       )}

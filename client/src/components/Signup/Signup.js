@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -7,6 +8,8 @@ import {
   deleteUser,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import {
   getDatabase,
@@ -29,6 +32,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
   const [step, setStep] = useState(1);
+  const [isSignInWithGoogle, setIsSignInWithGoogle] = useState(false);
   const [email, setEmail] = useState(null);
   const navigate = useNavigate();
 
@@ -42,7 +46,21 @@ const Signup = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
-        navigate("/");
+        if (isSignInWithGoogle) {
+          const db = getDatabase();
+          const userRef = ref(db, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          if (!snapshot.exists()) {
+            await set(userRef, {
+              name: user.displayName,
+              username: null,
+              email: user.email,
+            });
+          }
+          navigate("/");
+        } else {
+          navigate("/");
+        }
       } else {
         setLoading(false);
       }
@@ -191,6 +209,17 @@ const Signup = () => {
       console.log("User deleted successfully on error.");
     } catch (error) {
       console.error("Error deleting user:", error.message);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      setIsSignInWithGoogle(true);
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      setIsSignInWithGoogle(false);
+      console.error(error);
     }
   };
 
@@ -390,9 +419,28 @@ const Signup = () => {
                 </button>
               </form>
 
-              <p className="signin text-center mb-4">
-                Already have an account? <Link to="/signin">Sign in</Link>
-              </p>
+              <div className="w-75 mx-auto">
+                <div className="line-container my-3">
+                  <div className="line"></div>
+                  <div className="text">Or</div>
+                  <div className="line"></div>
+                </div>
+                <button
+                  className="btn btn-primary d-flex justify-content-center align-items-center w-100"
+                  onClick={signInWithGoogle}
+                >
+                  <i
+                    className="me-2 d-flex align-items-center"
+                    style={{ fontSize: "20px" }}
+                  >
+                    <FcGoogle />
+                  </i>
+                  Sign in with Google
+                </button>
+                <p className="signin text-center my-4">
+                  Already have an account? <Link to="/signin">Sign in</Link>
+                </p>
+              </div>
             </div>
           )}
 
