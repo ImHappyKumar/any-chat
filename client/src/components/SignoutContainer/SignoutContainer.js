@@ -7,9 +7,9 @@ import { IoIosArrowForward } from "react-icons/io";
 
 import "./SignoutContainer.css";
 
-const SignoutContainer = ({ name, username }) => {
+const SignoutContainer = ({ photo, name, username }) => {
   const navigate = useNavigate();
-  
+
   const handleSignout = async () => {
     try {
       await signOut(auth);
@@ -23,9 +23,9 @@ const SignoutContainer = ({ name, username }) => {
     <div className="signout-container mx-auto mb-3">
       <div className="d-flex align-items-center m-3">
         <div className="user-icon d-flex justify-content-center align-items-center">
-          <i>
+          {photo ? (<img src={photo} alt="profile"></img>) : (<i>
             <FaRegUser />
-          </i>
+          </i>)}
         </div>
         <div className="user-name ms-2 ps-1 d-flex flex-column">
           <div className="name">{name}</div>

@@ -13,6 +13,12 @@
     background: rgba(155, 214, 29, 1);
 }
 
+.signout-container .user-icon img {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+}
+
 .signout-container .user-icon i {
     font-size: 20px;
 }

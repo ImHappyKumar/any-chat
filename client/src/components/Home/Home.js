@@ -18,7 +18,7 @@ import logo from "../../images/logo.png";
 import ScalingLoading from "../Loading/ScalingLoading";
 import Layout from "../Layout/Layout";
 
-const Home = () => {
+const Home = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
   const [signed, setSigned] = useState(false);
@@ -40,7 +40,7 @@ const Home = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
         setSigned(true);
-        const { uid } = user;
+        const { uid, photoURL } = user;
         const db = getDatabase();
         const userRef = ref(db, `users/${uid}`);
 
@@ -51,12 +51,14 @@ const Home = () => {
               setIsUsernameNotSet(true);
               setUser({
                 uid: uid,
+                photo: photoURL,
                 name: snapshot.val().name,
                 email: snapshot.val().email,
               });
             } else {
               setUser({
                 uid: uid,
+                photo: photoURL,
                 name: snapshot.val().name,
                 email: snapshot.val().email,
                 username: snapshot.val().username,
@@ -65,7 +67,7 @@ const Home = () => {
           }
           setLoading(false);
         } catch (error) {
-          console.error("Error fetching user data:", error);
+          setErrorMessage("Error fetching user data");
           setLoading(false);
         }
       } else {
@@ -76,7 +78,7 @@ const Home = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  });
 
   const handleSignout = async () => {
     try {
@@ -85,7 +87,7 @@ const Home = () => {
       setUser({});
       navigate("/signin");
     } catch (error) {
-      console.error("Error signing out:", error);
+      setErrorMessage("Error signing out");
     }
   };
 
@@ -133,7 +135,7 @@ const Home = () => {
 
       return snapshot.exists();
     } catch (error) {
-      console.error("Error checking username:", error);
+      setErrorMessage("Error checking username");
       throw error;
     }
   };

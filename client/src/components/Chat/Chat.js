@@ -17,12 +17,13 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 let socket;
 
-const Chat = () => {
+const Chat = ({ setErrorMessage }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [connectionLoading, setConnectionLoading] = useState(true);
   const [messageLoading, setMessageLoading] = useState(true);
   const [openMenu, setOpenMenu] = useState(false);
+  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
@@ -36,18 +37,34 @@ const Chat = () => {
 
   // To join room
   useEffect(() => {
-    const { name, username } = location.state.user;
+    const { photo, name, username } = location.state.user;
     const room = location.state.room;
 
     socket = io(ENDPOINT);
 
+    socket.on("connect_error", (error) => {
+      setErrorMessage(
+        "Failed to connect to the server. Please try again later."
+      );
+      navigate("/");
+    });
+
+    socket.on("connect_failed", () => {
+      setErrorMessage(
+        "Server connection refused. Please check your internet connection and try again."
+      );
+      navigate("/");
+    });
+
+    setPhoto(photo);
     setName(name);
     setUsername(username);
     setRoom(room);
 
     socket.emit("join", { name, username, room }, (error) => {
       if (error) {
-        alert(error);
+        setErrorMessage(error);
+        navigate("/");
       }
     });
 
@@ -56,6 +73,7 @@ const Chat = () => {
     return () => {
       socket.disconnect();
     };
+    // eslint-disable-next-line 
   }, [location.state.user, location.state.room, ENDPOINT]);
 
   // To fetch room messages from database
@@ -74,8 +92,7 @@ const Chat = () => {
 
       setMessageLoading(false);
     } catch (error) {
-      alert("Internal Server Error");
-      console.log(error);
+      setErrorMessage("Internal Server Error");
       setMessageLoading(false);
     }
   };
@@ -134,21 +151,25 @@ const Chat = () => {
     if (socket.disconnected) {
       navigate("/");
     } else {
-      console.error("Unable to disconnect");
+      setErrorMessage("Unable to disconnect");
     }
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (openMenu && outsideMenuRef.current.contains(event.target) && !insideMenuRef.current.contains(event.target)) {
+      if (
+        openMenu &&
+        outsideMenuRef.current.contains(event.target) &&
+        !insideMenuRef.current.contains(event.target)
+      ) {
         setOpenMenu(!openMenu);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   });
 
@@ -164,6 +185,7 @@ const Chat = () => {
         <div className="container-fluid d-flex pt-3 px-lg-5">
           <div className="col-xl-3 col-lg-4 d-lg-block d-none left-container">
             <Menu
+              photo={photo}
               name={name}
               username={username}
               room={room}
@@ -173,8 +195,12 @@ const Chat = () => {
           </div>
 
           <div className="col-xl-9 col-lg-8 col-12 d-flex flex-column main-container">
-            <div className={`mobile-menu ${openMenu ? "open" : ""} py-2`} ref={insideMenuRef}>
+            <div
+              className={`mobile-menu ${openMenu ? "open" : ""} py-2`}
+              ref={insideMenuRef}
+            >
               <Menu
+                photo={photo}
                 name={name}
                 username={username}
                 room={room}

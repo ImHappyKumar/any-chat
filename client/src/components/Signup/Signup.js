@@ -28,7 +28,7 @@ import "./Signup.css";
 import ScalingLoading from "../Loading/ScalingLoading";
 import Layout from "../Layout/Layout";
 
-const Signup = () => {
+const Signup = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
   const [step, setStep] = useState(1);
@@ -126,7 +126,7 @@ const Signup = () => {
         });
       } else {
         setWait(false);
-        alert("Signup completed, but unable to signin");
+        setErrorMessage("Signup completed, but unable to signin");
       }
 
       setEmail(data.email);
@@ -154,9 +154,8 @@ const Signup = () => {
         });
         await deleteUserOnError();
       } else {
-        console.error(error.code, error.message);
         await deleteUserOnError();
-        alert("An error occurred during sign-up. Please try again.");
+        setErrorMessage("An error occurred during sign-up. Please try again.");
       }
     }
 
@@ -186,7 +185,7 @@ const Signup = () => {
 
       return snapshot.exists();
     } catch (error) {
-      console.error("Error checking username:", error);
+      setErrorMessage("Error checking username");
       throw error;
     }
   };
@@ -208,7 +207,7 @@ const Signup = () => {
 
       console.log("User deleted successfully on error.");
     } catch (error) {
-      console.error("Error deleting user:", error.message);
+      setErrorMessage("Error deleting user");
     }
   };
 
@@ -219,7 +218,7 @@ const Signup = () => {
       await signInWithPopup(auth, provider);
     } catch (error) {
       setIsSignInWithGoogle(false);
-      console.error(error);
+      setErrorMessage("Error while signin with Google");
     }
   };
 

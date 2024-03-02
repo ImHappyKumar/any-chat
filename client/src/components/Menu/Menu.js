@@ -7,7 +7,7 @@ import logo from "../../images/logo.png";
 import UserContainer from "../UserContainer/UserContainer";
 import SignoutContainer from "../SignoutContainer/SignoutContainer";
 
-const Menu = ({name, username, room, users, leaveRoom}) => {
+const Menu = ({ photo, name, username, room, users, leaveRoom }) => {
   return (
     <div className="menu d-flex flex-column">
       <div className="d-flex ms-4 my-4">
@@ -29,7 +29,7 @@ const Menu = ({name, username, room, users, leaveRoom}) => {
         <UserContainer users={users} />
       </div>
 
-      <SignoutContainer name={name} username={username} />
+      <SignoutContainer photo={photo} name={name} username={username} />
     </div>
   );
 };

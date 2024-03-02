@@ -16,7 +16,7 @@ import "./Signin.css";
 import ScalingLoading from "../Loading/ScalingLoading";
 import Layout from "../Layout/Layout";
 
-const Signin = () => {
+const Signin = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
   const [isSignInWithGoogle, setIsSignInWithGoogle] = useState(false);
@@ -83,7 +83,7 @@ const Signin = () => {
           message: "Invalid Email or Password",
         });
       } else {
-        alert("An error occurred during signin. Please try again.");
+        setErrorMessage("An error occurred during signin. Please try again.");
       }
     }
     setWait(false);
@@ -96,7 +96,7 @@ const Signin = () => {
       await signInWithPopup(auth, provider);
     } catch (error) {
       setIsSignInWithGoogle(false);
-      console.error(error);
+      setErrorMessage("Error while signin with Google");
     }
   };
 
