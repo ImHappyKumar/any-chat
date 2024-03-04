@@ -23,7 +23,7 @@ const Signin = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);
   const [wait, setWait] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
-  const [resetPasswordLinkSent, setResetPasswordLinkSent] = useState(true);
+  const [resetPasswordLinkSent, setResetPasswordLinkSent] = useState(false);
   const [isSignInWithGoogle, setIsSignInWithGoogle] = useState(false);
   const navigate = useNavigate();
   const {
