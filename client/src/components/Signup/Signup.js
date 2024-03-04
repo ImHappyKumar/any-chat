@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { TbMailCheck } from "react-icons/tb";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -230,7 +231,7 @@ const Signup = ({ setErrorMessage }) => {
         <Layout>
           {step === 1 && (
             <div className="m-3" id="signup">
-              <h3 className="text-center">Create your account</h3>
+              <h3 className="text-center">Create an account</h3>
               <form
                 className="mx-auto w-75 mt-5 mb-4"
                 onSubmit={handleSubmit(handleSignUp)}
@@ -421,7 +422,7 @@ const Signup = ({ setErrorMessage }) => {
               <div className="w-75 mx-auto">
                 <div className="line-container my-3">
                   <div className="line"></div>
-                  <div className="text">Or</div>
+                  <div className="text">OR</div>
                   <div className="line"></div>
                 </div>
                 <button
@@ -446,7 +447,10 @@ const Signup = ({ setErrorMessage }) => {
           {step === 2 && (
             <div className="m-3 text-center" id="signup">
               <h3>Verify your email</h3>
-              <p className="mt-4 mb-3">
+              <i className="check-email mt-2">
+                <TbMailCheck />
+              </i>
+              <p className="mt-2 mb-3">
                 Thank you for registering! <br />
                 We've sent a verification link to <span>{email}</span>. Please
                 check your inbox and click on the link to verify your account.
