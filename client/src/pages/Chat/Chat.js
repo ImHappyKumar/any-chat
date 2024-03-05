@@ -6,12 +6,12 @@ import { getDatabase, ref, get } from "firebase/database";
 
 import "./Chat.css";
 
-import ScalingLoading from "../Loading/ScalingLoading";
-import SpinnerLoading from "../Loading/SpinnerLoading";
-import Menu from "../Menu/Menu";
-import InfoBar from "../InfoBar/InfoBar";
-import Input from "../Input/Input";
-import Messages from "../Messages/Messages";
+import ScalingLoading from "../../components/Loading/ScalingLoading";
+import SpinnerLoading from "../../components/Loading/SpinnerLoading";
+import Menu from "../../components/Menu/Menu";
+import InfoBar from "../../components/InfoBar/InfoBar";
+import Input from "../../components/Input/Input";
+import Messages from "../../components/Messages/Messages";
 
 import ScrollToBottom from "react-scroll-to-bottom";
 

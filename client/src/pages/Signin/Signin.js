@@ -16,8 +16,8 @@ import { auth } from "../../firebase";
 
 import "./Signin.css";
 
-import ScalingLoading from "../Loading/ScalingLoading";
-import Layout from "../Layout/Layout";
+import ScalingLoading from "../../components/Loading/ScalingLoading";
+import Layout from "../../components/Layout/Layout";
 
 const Signin = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);

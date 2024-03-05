@@ -3,7 +3,7 @@ import { FiPlus } from "react-icons/fi";
 
 import "./Menu.css";
 
-import logo from "../../images/logo.png";
+import logo from "../../assets/logo.png";
 import UserContainer from "../UserContainer/UserContainer";
 import SignoutContainer from "../SignoutContainer/SignoutContainer";
 

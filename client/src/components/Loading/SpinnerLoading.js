@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Loading.css";
-import Loading from "../../svg/loading.svg";
+import Loading from "../../assets/loading.svg";
 
 const SpinnerLoading = () => {
   return (

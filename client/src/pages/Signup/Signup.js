@@ -26,8 +26,8 @@ import { auth } from "../../firebase";
 
 import "./Signup.css";
 
-import ScalingLoading from "../Loading/ScalingLoading";
-import Layout from "../Layout/Layout";
+import ScalingLoading from "../../components/Loading/ScalingLoading";
+import Layout from "../../components/Layout/Layout";
 
 const Signup = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);

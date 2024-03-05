@@ -14,9 +14,9 @@ import {
 } from "firebase/database";
 import { auth } from "../../firebase";
 import "./Home.css";
-import logo from "../../images/logo.png";
-import ScalingLoading from "../Loading/ScalingLoading";
-import Layout from "../Layout/Layout";
+import logo from "../../assets/logo.png";
+import ScalingLoading from "../../components/Loading/ScalingLoading";
+import Layout from "../../components/Layout/Layout";
 
 const Home = ({ setErrorMessage }) => {
   const [loading, setLoading] = useState(true);

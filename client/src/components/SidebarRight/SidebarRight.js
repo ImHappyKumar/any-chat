@@ -2,8 +2,8 @@ import React from "react";
 import { FaXmark, FaQuestion } from "react-icons/fa6";
 
 import "./SidebarRight.css";
-import avatar4 from "../../images/avatar-4.png";
-import cat from "../../images/cat.png";
+import avatar4 from "../../assets/avatar-4.png";
+import cat from "../../assets/cat.png";
 
 const SidebarRight = () => {
   return (

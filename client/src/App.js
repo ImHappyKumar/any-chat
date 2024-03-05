@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import Home from "./components/Home/Home";
-import Signup from "./components/Signup/Signup";
-import Signin from "./components/Signin/Signin";
-import Chat from "./components/Chat/Chat";
+import Home from "./pages/Home/Home";
+import Signup from "./pages/Signup/Signup";
+import Signin from "./pages/Signin/Signin";
+import Chat from "./pages/Chat/Chat";
 import ErrorAlert from "./components/ErrorAlert/ErrorAlert";
 
 const App = () => {

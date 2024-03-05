@@ -3,10 +3,10 @@ import { FaCode, FaRegLightbulb } from "react-icons/fa6";
 import { LuThumbsUp } from "react-icons/lu";
 
 import "./SidebarLeft.css";
-import avatar1 from "../../images/avatar-1.png";
-import avatar2 from "../../images/avatar-2.png";
-import avatar3 from "../../images/avatar-3.png";
-import arrow from "../../images/arrow.png";
+import avatar1 from "../../assets/avatar-1.png";
+import avatar2 from "../../assets/avatar-2.png";
+import avatar3 from "../../assets/avatar-3.png";
+import arrow from "../../assets/arrow.png";
 
 const SidebarLeft = () => {
   return (

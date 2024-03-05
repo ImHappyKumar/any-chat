@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Loading.css";
-import Loading from "../../images/logo.png";
+import Loading from "../../assets/logo.png";
 
 const ScalingLoading = () => {
   return (
